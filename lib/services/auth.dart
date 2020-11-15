@@ -1,8 +1,7 @@
 
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:ourwearprototype/models/user.dart';
-
-import 'package:ourwearprototype/services/database.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/services/database.dart';
 
 class AuthService{
 

@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/homepage/homepage_general.dart';
+
+import 'homepage_general.dart';
 // https://flutter.dev/docs/cookbook/design/tabs
 // https://medium.com/fluttervn/making-bottom-tabbar-with-flutter-5ff82e8defe0
 // https://api.flutter.dev/flutter/material/BottomNavigationBar-class.html

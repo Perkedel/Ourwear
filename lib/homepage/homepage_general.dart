@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/Itemizer/ItemCover.dart';
-import 'package:ourwearprototype/homepage/homepart/HomePart.dart';
+import 'package:ourwear_really/Itemizer/ItemCover.dart';
+
+import 'homepart/HomePart.dart';
 //https://api.flutter.dev/flutter/widgets/CustomScrollView-class.html
 // https://flutter.dev/docs/development/ui/advanced/slivers
 //JOELwindows7
