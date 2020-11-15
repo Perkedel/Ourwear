@@ -5,16 +5,16 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/Scaffolds/Prosotipe/CartProsotipe.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/models/user.dart';
-import 'package:ourwearprototype/services/auth.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/loading.dart';
-import 'package:ourwearprototype/shared/spareparts/EditCartData.dart';
-import 'package:ourwearprototype/shared/spareparts/RentalItemQueryMiniWindows.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/services/auth.dart';
+import 'package:ourwear_really/services/database.dart';
 import 'package:provider/provider.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
+
+import '../loading.dart';
+import 'EditCartData.dart';
+import 'RentalItemQueryMiniWindows.dart';
 
 class OopsStack {
   final int wasIndex;

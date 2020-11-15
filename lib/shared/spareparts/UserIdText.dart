@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/models/user.dart';
-import 'package:ourwearprototype/services/auth.dart';
-import 'package:ourwearprototype/shared/loading.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/services/auth.dart';
 import 'package:provider/provider.dart';
+
+import '../loading.dart';
 
 class UserIdText extends StatefulWidget {
   @override

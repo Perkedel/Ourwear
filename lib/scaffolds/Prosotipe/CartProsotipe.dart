@@ -7,14 +7,9 @@ import 'package:flutter/material.dart';
 import 'dart:async';
 import 'dart:io';
 
-import 'package:audioplayers/audio_cache.dart';
-import 'package:audioplayers/audioplayers.dart';
-import 'package:flutter/material.dart';
 import 'package:http/http.dart';
-import 'package:ourwearprototype/Scaffolds/Prosotipe/MakeShiftCheckout.dart';
 import 'package:path_provider/path_provider.dart';
-import 'package:provider/provider.dart';
-import 'package:flutter/src/foundation/constants.dart';
+import 'MakeShiftCheckout.dart';
 
 const kUrl1 = 'https://luan.xyz/files/audio/ambient_c_motion.mp3';
 

@@ -1,13 +1,13 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/models/user.dart';
-import 'package:ourwearprototype/services/auth.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/loading.dart';
-import 'package:ourwearprototype/shared/reusable/AnUserID.dart';
-import 'package:ourwearprototype/shared/spareparts/RentalItemQueryMiniWindows.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/services/auth.dart';
+import 'package:ourwear_really/services/database.dart';
+import 'package:ourwear_really/shared/loading.dart';
+import 'package:ourwear_really/shared/reusable/AnUserID.dart';
+import 'package:ourwear_really/shared/spareparts/RentalItemQueryMiniWindows.dart';
 import 'package:provider/provider.dart';
 
 // https://stackoverflow.com/q/54230115/9079640

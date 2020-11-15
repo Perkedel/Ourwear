@@ -1,6 +1,5 @@
 import 'package:flutter/cupertino.dart';
-import 'package:ourwearprototype/Scaffolds/Games/PagedSwipe/Pages/OurWearIntro.dart';
-import 'package:ourwearprototype/Scaffolds/Games/PagedSwipe/Pages/Page1.dart';
+import 'package:ourwear_really/scaffolds/Games/PagedSwipe/Pages/OurWearIntro.dart';
 
 class HalamanFiturView extends StatefulWidget {
   final PageController pageController;

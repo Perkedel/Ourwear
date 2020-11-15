@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/Scaffolds/Games/PagedSwipe/Pages/Page1.dart';
+import 'package:ourwear_really/scaffolds/Games/PagedSwipe/Pages/Page1.dart';
 import 'package:page_indicator/page_indicator.dart';
 //JOELwindows7
 

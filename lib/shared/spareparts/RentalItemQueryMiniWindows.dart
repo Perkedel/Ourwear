@@ -1,9 +1,10 @@
 //TODO item detail mini widget that uses stream builder of Rental things
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/loading.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/services/database.dart';
+
+import '../loading.dart';
 
 
 class RentalParticularDetail extends StatefulWidget {

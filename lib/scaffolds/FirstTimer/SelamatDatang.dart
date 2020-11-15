@@ -1,7 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/Scaffolds/FirstTimer/HalamanFiturView.dart';
 import 'package:page_view_indicators/circle_page_indicator.dart';
+
+import 'HalamanFiturView.dart';
 
 //https://api.flutter.dev/flutter/widgets/PageController-class.html
 

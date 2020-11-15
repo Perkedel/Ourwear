@@ -1,11 +1,12 @@
 import 'dart:ffi';
 
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/constants.dart';
-import 'package:ourwearprototype/shared/loading.dart';
-import 'package:ourwearprototype/shared/reusable/AnUserID.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/services/database.dart';
+import 'package:ourwear_really/shared/reusable/AnUserID.dart';
+
+import '../constants.dart';
+import '../loading.dart';
 
 /*
 https://api.flutter.dev/flutter/material/TextFormField-class.html

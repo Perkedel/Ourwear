@@ -28,9 +28,10 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^0.1.2
 
-  firebase_auth: any
-  cloud_firestore: any
-  provider: any
+  firebase_auth: ^0.14.0+5
+  firebase_core: ^0.4.2+1
+  cloud_firestore: ^0.13.0+1
+  provider: ^3.1.0
   flutter_spinkit: any
   font_awesome_flutter: any
 
@@ -44,7 +45,7 @@ dependencies:
   page_view_indicators: any
   page_indicator: any
 
-  audioplayers: any
+  audioplayers: ^0.16.2
 
   flutter_spinbox: any
 

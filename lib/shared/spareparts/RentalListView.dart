@@ -1,12 +1,12 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
-import 'package:ourwearprototype/Scaffolds/Prosotipe/MakeshiftItemView.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/services/auth.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/spareparts/RentalItemQueryMiniWindows.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/scaffolds/Prosotipe/MakeshiftItemView.dart';
+import 'package:ourwear_really/services/auth.dart';
+import 'package:ourwear_really/services/database.dart';
 import 'package:provider/provider.dart';
-import 'dart:math';
+
+import 'RentalItemQueryMiniWindows.dart';
 
 //https://medium.com/flutter-community/firebase-startup-logic-and-custom-user-profiles-6309562ea8b7
 // https://stackoverflow.com/q/50252569/9079640

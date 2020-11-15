@@ -7,13 +7,14 @@ import 'package:intl/intl.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_spinbox/flutter_spinbox.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/models/user.dart';
-import 'package:ourwearprototype/services/auth.dart';
-import 'package:ourwearprototype/services/database.dart';
-import 'package:ourwearprototype/shared/loading.dart';
-import 'package:ourwearprototype/shared/reusable/AnUserID.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/services/auth.dart';
+import 'package:ourwear_really/services/database.dart';
+import 'package:ourwear_really/shared/reusable/AnUserID.dart';
 import 'package:provider/provider.dart';
+
+import '../loading.dart';
 
 /*
 https://pub.dev/packages/flutter_spinbox

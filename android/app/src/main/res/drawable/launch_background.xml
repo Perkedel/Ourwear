@@ -4,6 +4,7 @@
     <item android:drawable="@android:color/red" />
 
     <!-- You can insert your own image assets here -->
+    <!-- https://youtu.be/eYzsZLMyrac -->
     <item>
         <bitmap
             android:gravity="center"

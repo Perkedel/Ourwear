@@ -1,0 +1,12 @@
+# Credit Immediately
+- https://github.com/flutter/flutter/issues/17150
+- https://stackoverflow.com/questions/23640059/project-with-path-mypath-could-not-be-found-in-root-project-myproject
+- https://github.com/flutter/flutter/issues/17150
+- https://pub.dev/packages/audioplayers/install
+- https://pub.dev/packages/firebase_core
+- https://flutter.dev/docs/development/ui/advanced/splash-screen
+- https://pub.dev/packages/splashscreen
+- https://www.youtube.com/watch?v=eYzsZLMyrac
+- https://www.youtube.com/watch?v=Wa0rdbb53I8&list=PL4cUxeGkcC9j--TKIdkb3ISfRbJeJYQwC&index=2
+- https://youtu.be/Wa0rdbb53I8
+- 

@@ -2,12 +2,10 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
-import 'package:ourwearprototype/Scaffolds/Games/KhochocHighscore.dart';
-import 'package:ourwearprototype/models/Renter.dart';
-import 'package:ourwearprototype/models/brew.dart';
-import 'package:ourwearprototype/models/user.dart';
-import 'package:provider/provider.dart';
+import 'package:ourwear_really/models/Renter.dart';
+import 'package:ourwear_really/models/brew.dart';
+import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/scaffolds/Games/KhochocHighscore.dart';
 
 class DatabaseService {
   final String uid;
