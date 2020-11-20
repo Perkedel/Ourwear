@@ -64,6 +64,13 @@ class Draft {
   });
 }
 
+class TopList {
+  final String uid;
+  final List<Rental> rentalUid;
+  final String title;
+  TopList({this.uid, this.rentalUid, this.title});
+}
+
 class Cart {
   final String uid; //user id. each user has own cart
   final String nama;

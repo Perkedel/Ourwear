@@ -164,7 +164,7 @@ class _MakeshiftItemViewState extends State<MakeshiftItemView> {
                   ));
             },
             icon: Icon(Icons.shopping_cart),
-            label: Text('Buy Now'))
+            label: Text('Rent Now'))
       ],
     );
   }

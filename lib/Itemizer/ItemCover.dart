@@ -82,20 +82,27 @@ class _ItemCoverHomeState extends State<ItemCoverHome> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Image(
-            fit: BoxFit.contain,
-            //loadingBuilder: (context, child, loadingProgress) => Loading(),
-            width: 150.0,
-            height: 150.0,
-            image: AssetImage(imageP),
+          // Image(
+          //   fit: BoxFit.contain,
+          //   //loadingBuilder: (context, child, loadingProgress) => Loading(),
+          //   width: 150.0,
+          //   height: 150.0,
+          //   image: AssetImage(imageP),
+          // ),
+          ImagesItem(
+            itemId: itemIde,
           ),
-          Text(
-            titleP,
-            overflow: TextOverflow.ellipsis,
+          // Text(
+          //   titleP,
+          //   overflow: TextOverflow.ellipsis,
+          // ),
+          TitlesItem(
+            itemId: itemIde,
           ),
           DetailsItem(
             itemId: itemIde,
           ),
+          // TODO Wishlist button
         ],
       ),
     );
@@ -126,36 +133,6 @@ class _IdkScrollingItemState extends State<IdkScrollingItem> {
           ),
         ],
       ),
-    );
-  }
-}
-
-class BrokenItemCover extends StatefulWidget {
-  @override
-  _BrokenItemCoverState createState() => _BrokenItemCoverState();
-}
-
-class _BrokenItemCoverState extends State<BrokenItemCover> {
-  List<ItemsOnIt> itemCovers = [
-    ItemsOnIt(titling: 'empty'),
-    ItemsOnIt(titling: 'WHOAH'),
-  ];
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      //height: 300.0,
-      child: ListView.builder(
-          shrinkWrap: true,
-          scrollDirection: Axis.horizontal,
-          itemCount: itemCovers.length,
-          itemBuilder: (context, index) {
-            return ItemCoverHome(
-              titling: itemCovers.elementAt(index).titling,
-              imagePath: itemCovers.elementAt(index).imagePath,
-              itemId: itemCovers.elementAt(index).itemId,
-            );
-          }),
     );
   }
 }
@@ -323,6 +300,57 @@ class _ViewAllItemsState extends State<ViewAllItems> {
   }
 }
 
+class ImagesItem extends StatefulWidget {
+  final String itemId;
+  ImagesItem({this.itemId});
+  @override
+  _ImagesItemState createState() => _ImagesItemState(itemId: itemId);
+}
+
+class _ImagesItemState extends State<ImagesItem> {
+  final String itemId;
+  _ImagesItemState({this.itemId});
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<Rental>(
+      stream: DatabaseService(uid: itemId, itemId: itemId).particularRentalData,
+      builder: (context, snapshot) {
+        return Image(
+          fit: BoxFit.contain,
+          //loadingBuilder: (context, child, loadingProgress) => Loading(),
+          width: 150.0,
+          height: 150.0,
+          image: NetworkImage(snapshot.data.imager),
+        );
+      },
+    );
+  }
+}
+
+class TitlesItem extends StatefulWidget {
+  final String itemId;
+  TitlesItem({this.itemId});
+  @override
+  _TitlesItemState createState() => _TitlesItemState(itemId: itemId);
+}
+
+class _TitlesItemState extends State<TitlesItem> {
+  final String itemId;
+  _TitlesItemState({this.itemId});
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<Rental>(
+      stream: DatabaseService(itemId: itemId, uid: itemId).particularRentalData,
+      builder: (context, snapshot) {
+        return Text(
+          '${snapshot.data.nama}',
+          overflow: TextOverflow.ellipsis,
+        );
+      },
+    );
+  }
+}
+
 class DetailsItem extends StatefulWidget {
   final itemId;
   DetailsItem({this.itemId});
@@ -346,7 +374,7 @@ class _DetailsItemState extends State<DetailsItem> {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<Rental>(
-      stream: DatabaseService(uid: itemId).particularRentalData,
+      stream: DatabaseService(uid: itemId, itemId: itemId).particularRentalData,
       builder: (context, snapshot) {
         return Column(
           children: [
@@ -362,6 +390,28 @@ class _DetailsItemState extends State<DetailsItem> {
             ),
           ],
         );
+      },
+    );
+  }
+}
+
+//Parent for Scrolling item covers collection & See all
+//Produk Spesial
+class TopLister extends StatefulWidget {
+  final listId;
+  TopLister({this.listId});
+  @override
+  _TopListerState createState() => _TopListerState(listId: listId);
+}
+
+class _TopListerState extends State<TopLister> {
+  final listId;
+  _TopListerState({this.listId});
+  @override
+  Widget build(BuildContext context) {
+    return StreamBuilder<TopList>(
+      builder: (context, snapshot) {
+        return Container();
       },
     );
   }

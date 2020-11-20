@@ -1,3 +1,5 @@
+import 'dart:html';
+
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -24,6 +26,8 @@ class DatabaseService {
       Firestore.instance.collection('wearers/drafts');
   final CollectionReference khochocCollection =
       Firestore.instance.collection('KhochocHighScore');
+  final CollectionReference topListCollection =
+      Firestore.instance.collection('TopList');
 
   Future updateUserData(String sugars, String name, int strength) async {
     return await brewCollection.document(uid).setData({
@@ -278,6 +282,12 @@ class DatabaseService {
     });
   }
 
+  // Future getTopListData(
+  //   String listId
+  // ) async {
+  //   return await topListCollection.document(listId)
+  // }
+
   // brew list from snapshot
   List<Brew> _brewListFromSnapshot(QuerySnapshot snapshot) {
     return snapshot.documents.map((doc) {
@@ -309,6 +319,7 @@ class DatabaseService {
         descriptions: e.data['descriptions'] ?? '',
         timeBorrowDay: e.data['timeBorrowDay'] ?? 0,
         isAvailable: e.data['isAvailable'] ?? false,
+        location: e.data['location'] ?? 'Entahland',
       );
     }).toList();
   }
@@ -378,6 +389,7 @@ class DatabaseService {
       price: snapshot.data['price'],
       isAvailable: snapshot.data['isAvailable'] ?? false,
       imager: snapshot.data['imager'],
+      location: snapshot.data['location'],
     );
   }
 
@@ -425,6 +437,10 @@ class DatabaseService {
       executeWhen: snapshot.data['executeWhen'] ?? 1,
       timeBorrowDay: snapshot.data['timeBorrowDay'] ?? 7,
     );
+  }
+
+  TopList _topListFromSnapshot(DocumentSnapshot snapshot) {
+    return TopList(title: snapshot.data['title'] ?? 'Top List');
   }
 
   // get brews stream
@@ -484,6 +500,21 @@ class DatabaseService {
         .document(subID)
         .snapshots()
         .map(_particularCartItemFromSnapshot);
+  }
+
+  Stream<TopList> get topListData {
+    return topListCollection
+        .document(uid)
+        .snapshots()
+        .map(_topListFromSnapshot);
+  }
+
+  Stream<List<Rental>> get topRentals {
+    return topListCollection
+        .document(uid)
+        .collection(subID)
+        .snapshots()
+        .map(_rentalListFromSnapshot);
   }
 
   Stream<Wearer> get wearerData {
