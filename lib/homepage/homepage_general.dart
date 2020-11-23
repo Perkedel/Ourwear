@@ -22,6 +22,10 @@ class _HomepageGeneralState extends State<HomepageGeneral> {
             FlatButton(
               onPressed: () {},
               child: Icon(Icons.notifications, color: Colors.white),
+            ),
+            FlatButton(
+              onPressed: () {},
+              child: Icon(Icons.menu),
             )
           ],
           floating: true,
@@ -213,8 +217,8 @@ class _HomepageGeneralState extends State<HomepageGeneral> {
                   ),
                   //SHOP
                   Container(
-                    width: 200.0,
-                    height: 60.0,
+                    width: 500.0,
+                    height: 300.0,
                     color: Colors.orange,
                     child: FlatButton(
                       height: 200.0,

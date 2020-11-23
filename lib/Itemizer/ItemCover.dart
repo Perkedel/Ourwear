@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:ourwear_really/models/Renter.dart';
 import 'package:ourwear_really/scaffolds/Prosotipe/MakeshiftItemView.dart';
 import 'package:ourwear_really/services/database.dart';
+import 'package:ourwear_really/shared/loading.dart';
 import 'package:ourwear_really/shared/reusable/AnUserID.dart';
 //JOELwindows7
 
@@ -315,13 +316,19 @@ class _ImagesItemState extends State<ImagesItem> {
     return StreamBuilder<Rental>(
       stream: DatabaseService(uid: itemId, itemId: itemId).particularRentalData,
       builder: (context, snapshot) {
-        return Image(
-          fit: BoxFit.contain,
-          //loadingBuilder: (context, child, loadingProgress) => Loading(),
-          width: 150.0,
-          height: 150.0,
-          image: NetworkImage(snapshot.data.imager),
-        );
+        var imageLoadPath = snapshot.data.imager;
+
+        if (imageLoadPath != null) {
+          return Image(
+            fit: BoxFit.contain,
+            //loadingBuilder: (context, child, loadingProgress) => Loading(),
+            width: 150.0,
+            height: 150.0,
+            image: NetworkImage(snapshot.data.imager),
+          );
+        } else {
+          return Loading();
+        }
       },
     );
   }
@@ -342,10 +349,15 @@ class _TitlesItemState extends State<TitlesItem> {
     return StreamBuilder<Rental>(
       stream: DatabaseService(itemId: itemId, uid: itemId).particularRentalData,
       builder: (context, snapshot) {
-        return Text(
-          '${snapshot.data.nama}',
-          overflow: TextOverflow.ellipsis,
-        );
+        var nama = snapshot.data.nama;
+
+        if (nama != null) {
+          return Text(
+            '$nama',
+            overflow: TextOverflow.ellipsis,
+          );
+        } else
+          return Loading();
       },
     );
   }
@@ -376,20 +388,26 @@ class _DetailsItemState extends State<DetailsItem> {
     return StreamBuilder<Rental>(
       stream: DatabaseService(uid: itemId, itemId: itemId).particularRentalData,
       builder: (context, snapshot) {
-        return Column(
-          children: [
-            Text(
-              '${snapshot.data.location}',
-              style: stylering,
-              textAlign: TextAlign.start,
-            ),
-            Text(
-              'Rp ${snapshot.data.price}',
-              style: stylering,
-              textAlign: TextAlign.start,
-            ),
-          ],
-        );
+        var lokasi = snapshot.data.location;
+        var harga = snapshot.data.price;
+
+        if (lokasi != null && harga != null) {
+          return Column(
+            children: [
+              Text(
+                '$lokasi',
+                style: stylering,
+                textAlign: TextAlign.start,
+              ),
+              Text(
+                'Rp $harga',
+                style: stylering,
+                textAlign: TextAlign.start,
+              ),
+            ],
+          );
+        } else
+          return Loading();
       },
     );
   }

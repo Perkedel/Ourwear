@@ -10,6 +10,12 @@ class Wearer {
   Wearer({this.uid, this.name, this.phone, this.address});
 }
 
+class RentalRef {
+  final String uid;
+  final String rentUid;
+  RentalRef({this.uid, this.rentUid});
+}
+
 class Rental {
   final String uid; //item id
   final String userId; //who has that item

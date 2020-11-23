@@ -37,6 +37,7 @@ dependencies:
 
   flame: any
   box2d_flame: any
+  # flame_box2d: ^0.0.1
   sensors: any
   shake: any
   sqflite: any

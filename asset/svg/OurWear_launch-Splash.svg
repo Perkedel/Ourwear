@@ -7,44 +7,44 @@
    xmlns="http://www.w3.org/2000/svg"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   sodipodi:docname="OurWear_launch-Splash.svg"
-   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
-   id="svg8"
-   version="1.1"
-   viewBox="0 0 507.99999 285.75001"
+   width="1920"
    height="1080"
-   width="1920">
+   viewBox="0 0 507.99999 285.75001"
+   version="1.1"
+   id="svg8"
+   inkscape:version="1.0 (4035a4fb49, 2020-05-01)"
+   sodipodi:docname="OurWear_launch-Splash.svg">
   <defs
      id="defs2" />
   <sodipodi:namedview
-     inkscape:snap-bbox-midpoints="true"
-     inkscape:snap-bbox-edge-midpoints="true"
-     inkscape:bbox-nodes="true"
-     inkscape:bbox-paths="true"
-     inkscape:snap-bbox="true"
-     inkscape:pagecheckerboard="true"
-     units="px"
-     inkscape:window-maximized="1"
-     inkscape:window-y="-9"
-     inkscape:window-x="-9"
-     inkscape:window-height="1051"
-     inkscape:window-width="1920"
-     showgrid="true"
-     inkscape:document-rotation="0"
-     inkscape:current-layer="layer1"
-     inkscape:document-units="px"
-     inkscape:cy="812.35084"
-     inkscape:cx="860.55656"
-     inkscape:zoom="0.35"
-     inkscape:pageshadow="2"
-     inkscape:pageopacity="0"
-     borderopacity="1.0"
-     bordercolor="#666666"
+     id="base"
      pagecolor="#ff3131"
-     id="base">
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.35"
+     inkscape:cx="860.55656"
+     inkscape:cy="812.35084"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     inkscape:document-rotation="0"
+     showgrid="true"
+     inkscape:window-width="1920"
+     inkscape:window-height="1051"
+     inkscape:window-x="-9"
+     inkscape:window-y="-9"
+     inkscape:window-maximized="1"
+     units="px"
+     inkscape:pagecheckerboard="true"
+     inkscape:snap-bbox="true"
+     inkscape:bbox-paths="true"
+     inkscape:bbox-nodes="true"
+     inkscape:snap-bbox-edge-midpoints="true"
+     inkscape:snap-bbox-midpoints="true">
     <inkscape:grid
-       id="grid842"
-       type="xygrid" />
+       type="xygrid"
+       id="grid842" />
   </sodipodi:namedview>
   <metadata
      id="metadata5">
@@ -76,29 +76,29 @@
     </rdf:RDF>
   </metadata>
   <g
-     id="layer1"
+     inkscape:label="Lapis 1"
      inkscape:groupmode="layer"
-     inkscape:label="Lapis 1">
+     id="layer1">
     <rect
-       y="0"
-       x="0"
-       height="285.75"
-       width="508"
+       style="opacity:0.557789;fill:none;stroke:#000000;stroke-width:0.0132292;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:9.44882;stroke-opacity:1"
        id="rect844"
-       style="opacity:0.557789;fill:none;stroke:#000000;stroke-width:0.0132292;stroke-linecap:round;stroke-linejoin:round;stroke-dashoffset:9.44882;stroke-opacity:1" />
+       width="508"
+       height="285.75"
+       x="0"
+       y="0" />
     <text
-       inkscape:export-ydpi="96"
-       inkscape:export-xdpi="96"
-       inkscape:export-filename="C:\Users\joelr\Documents\starring codes\Flutter Projects\Ourwear Really\ourwear_really\android\app\src\main\res\drawable\launch_splash.png"
-       id="text856"
-       y="160.34505"
-       x="253.54654"
+       xml:space="preserve"
        style="font-size:43.525px;line-height:1.25;font-family:Ubuntu;-inkscape-font-specification:Ubuntu;text-align:center;letter-spacing:0px;word-spacing:0px;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:1.16585"
-       xml:space="preserve"><tspan
-         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Pasajero;-inkscape-font-specification:Pasajero;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:1.16585"
-         y="160.34505"
-         x="253.54654"
+       x="253.54654"
+       y="160.34505"
+       id="text856"
+       inkscape:export-filename="C:\Users\joelr\Documents\starring codes\Flutter Projects\Ourwear Really\ourwear_really\android\app\src\main\res\drawable\launch_image.png"
+       inkscape:export-xdpi="50"
+       inkscape:export-ydpi="50"><tspan
+         sodipodi:role="line"
          id="tspan854"
-         sodipodi:role="line">OURWEAR</tspan></text>
+         x="253.54654"
+         y="160.34505"
+         style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Pasajero;-inkscape-font-specification:Pasajero;text-align:center;text-anchor:middle;fill:#ffffff;fill-opacity:1;stroke-width:1.16585">OURWEAR</tspan></text>
   </g>
 </svg>

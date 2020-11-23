@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:ourwear_really/scaffolds/Account/AccountScreen.dart';
+import 'package:ourwear_really/scaffolds/Account/Wrapper.dart';
+import 'package:ourwear_really/scaffolds/Games/CartScreen.dart';
 
 import 'homepage_general.dart';
 // https://flutter.dev/docs/cookbook/design/tabs
@@ -41,16 +44,8 @@ class _HomepageBossState extends State<HomepageBoss> {
         child: Text('C'),
       ),
     ),
-    Container(
-      child: Center(
-        child: Text('D'),
-      ),
-    ),
-    Container(
-      child: Center(
-        child: Text('E'),
-      ),
-    ),
+    CartBottomTab(),
+    AccountScreen(),
   ];
 
   @override
@@ -79,7 +74,6 @@ class _HomepageBossState extends State<HomepageBoss> {
             icon: Icon(Icons.person),
             label: 'Akun',
           ),
-          
         ],
         currentIndex: _selectedHomepage,
         selectedItemColor: Colors.red,

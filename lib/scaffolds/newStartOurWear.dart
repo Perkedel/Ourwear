@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:ourwear_really/FirstTimer/SelamatDatang.dart';
 import 'package:ourwear_really/homepage/homepage_boss.dart';
 import 'package:ourwear_really/models/user.dart';
 import 'package:provider/provider.dart';
 import 'package:quiver/async.dart';
 
-import 'FirstTimer/SelamatDatang.dart';
 import 'Loading/SplashScreen.dart';
 
 class NewStartOurWear extends StatefulWidget {

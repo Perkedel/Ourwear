@@ -1,5 +1,3 @@
-import 'dart:html';
-
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/foundation.dart';
@@ -379,6 +377,15 @@ class DatabaseService {
     }).toList();
   }
 
+  List<RentalRef> _rentalRefsFromSnapshot(QuerySnapshot snapshot) {
+    return snapshot.documents.map((e) {
+      return RentalRef(
+        uid: e.documentID,
+        rentUid: e.data['rentUid'] ?? '',
+      );
+    });
+  }
+
   Rental _particularRentalDataFromSnapshot(DocumentSnapshot snapshot) {
     return Rental(
       uid: uid,
@@ -441,6 +448,10 @@ class DatabaseService {
 
   TopList _topListFromSnapshot(DocumentSnapshot snapshot) {
     return TopList(title: snapshot.data['title'] ?? 'Top List');
+  }
+
+  RentalRef _particularRentalRefFromSnapshot(DocumentSnapshot snapshot) {
+    return RentalRef(uid: uid, rentUid: snapshot.data['rentUid'] ?? 'null');
   }
 
   // get brews stream
@@ -509,12 +520,12 @@ class DatabaseService {
         .map(_topListFromSnapshot);
   }
 
-  Stream<List<Rental>> get topRentals {
+  Stream<List<RentalRef>> get topRentals {
     return topListCollection
-        .document(uid)
+        .document(uid) // userId
         .collection(subID)
         .snapshots()
-        .map(_rentalListFromSnapshot);
+        .map(_rentalRefsFromSnapshot);
   }
 
   Stream<Wearer> get wearerData {
