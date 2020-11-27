@@ -238,7 +238,8 @@ class DatabaseService {
   // https://stackoverflow.com/questions/53994972/flutter-remove-a-firebase-document-ontap
 
   Future updateTransactionOrderListData(
-      String itemId, int quantity, DateTime orderedAt) async {
+      String itemId, int quantity, DateTime orderedAt,
+      {String transactionToken}) async {
     //TODO: query rental list, get the item refered by ID
     var tempQuantity = quantity;
     return await wearerCollection
@@ -250,6 +251,7 @@ class DatabaseService {
       'rentalReference': rentalCollection.reference().document(itemId),
       'quantity': tempQuantity,
       'orderedAt': orderedAt,
+      'transactionToken': transactionToken,
     });
   }
 
@@ -261,6 +263,8 @@ class DatabaseService {
     int timeBorrowDay,
     Timestamp borrowFrom,
     Timestamp borrowTo,
+    String transactionToken,
+    String transactionMethod,
   }) async {
     //TODO: query rental list, get the item refered by ID
     var tempQuantity = quantity;
@@ -277,6 +281,8 @@ class DatabaseService {
       'borrowFrom': borrowFrom,
       'borrowTo': borrowTo,
       'timeBorrowDay': timeBorrowDay,
+      'transactionToken': transactionToken,
+      'transactionMethod': transactionMethod,
     });
   }
 
@@ -362,6 +368,9 @@ class DatabaseService {
         orderedAt: e.data['orderedAt'] ?? DateTime.now(),
         rentalReference: e.data['rentalReference'] ?? '',
         statusRightNow: e.data['statusRightNow'] ?? 0,
+        transactionToken: e.data['transactionToken'] ?? '',
+        transactionMethod:
+            e.data['transactionMethod'] ?? PaymentMethod.violated,
       );
     }).toList();
   }

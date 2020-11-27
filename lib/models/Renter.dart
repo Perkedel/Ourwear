@@ -120,9 +120,23 @@ class CartItem {
       this.userId});
 }
 
+//JOELwindows7
+//Pls help gw gamau being the only one here!
+//Find more coder! whose love to program general app like this
+//Help me build better code than this!
+enum PaymentMethod {
+  violated,
+  free,
+  cash,
+  card,
+  transfer,
+}
+
 class TransactionOrders {
   final String uid;
   final String cartUid;
+  final String transactionToken; //Proof of transaction
+  final PaymentMethod transactionMethod;
   final int quantity;
   final Timestamp orderedAt;
   final List<Timestamp>
@@ -149,6 +163,7 @@ class TransactionOrders {
 
   TransactionOrders({
     this.uid,
+    this.transactionToken,
     this.quantity,
     this.cartUid,
     this.orderedAt,
@@ -159,5 +174,6 @@ class TransactionOrders {
     this.borrowFrom,
     this.borrowTo,
     this.timeBorrowDay,
+    this.transactionMethod,
   });
 }

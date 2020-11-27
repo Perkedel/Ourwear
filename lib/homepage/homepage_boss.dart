@@ -44,8 +44,8 @@ class _HomepageBossState extends State<HomepageBoss> {
         child: Text('C'),
       ),
     ),
-    CartBottomTab(),
-    AccountScreen(),
+    CartBottomTab(), // reinstall Cart Screen from prototype
+    AccountScreen(), // Login Signup yeah
   ];
 
   @override

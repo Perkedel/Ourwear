@@ -9,6 +9,7 @@ import 'package:ourwear_really/models/user.dart';
 import 'package:ourwear_really/services/auth.dart';
 import 'package:ourwear_really/services/database.dart';
 import 'package:ourwear_really/shared/spareparts/CartItemListView.dart';
+import 'package:ourwear_really/shared/spareparts/RentalItemQueryMiniWindows.dart';
 import 'package:provider/provider.dart';
 
 class AttemptToCheckout extends StatefulWidget {
@@ -160,7 +161,17 @@ class _ReallyWhyNotCheckoutState extends State<ReallyWhyNotCheckout> {
     return StreamBuilder<List<CartItem>>(
       stream: DatabaseService(uid: userID).cartItemsData,
       builder: (context, snapshot) {
+        PaymentMethod chosenPaymentMethod;
         List<CartItem> cartTime = snapshot.data;
+        Future choosePaymentMethodFirst() async {
+          showModalBottomSheet(
+            context: context,
+            builder: (context) {
+              //return ChoosePaymentMethod();
+            },
+          );
+        }
+
         Future attemptCheckoutNow() async {
           var cartTimeLength = cartTime.length;
           print("Start NOw pls OMG! How many: ${cartTime.length}");
@@ -183,10 +194,35 @@ class _ReallyWhyNotCheckoutState extends State<ReallyWhyNotCheckout> {
                   .deleteCartItemData(itemID: dataOfIt.itemUid);
             }
           }
+
           print("Complete Checkout");
           Navigator.pop(context);
           Navigator.pop(context);
           //TODO: Navigate to transaction order list
+        }
+
+        Future handoverCheckout() async {
+          var cartTimeLength = cartTime.length;
+          List<CartItem> tobeHandoverCheckout;
+          print("Start NOw pls OMG! How many: ${cartTime.length}");
+          getUserID();
+          for (var i = 0; i < cartTimeLength; i++) {
+            CartItem dataOfIt = cartTime[i];
+            print("Whyn't work ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
+            print("delet ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
+            if (dataOfIt.checkoutThis) {
+              tobeHandoverCheckout.add(dataOfIt);
+            }
+          }
+          Navigator.push(
+            context,
+            MaterialPageRoute(
+              maintainState: true,
+              builder: (context) => ConfirmPayment(
+                handoverConfirmedCart: tobeHandoverCheckout,
+              ),
+            ),
+          );
         }
 
         return Scaffold(
@@ -203,7 +239,8 @@ class _ReallyWhyNotCheckoutState extends State<ReallyWhyNotCheckout> {
             RaisedButton.icon(
                 onPressed: () async {
                   try {
-                    await attemptCheckoutNow();
+                    //await attemptCheckoutNow();
+                    await handoverCheckout();
                   } catch (e) {
                     print(e);
                   }
@@ -214,6 +251,190 @@ class _ReallyWhyNotCheckoutState extends State<ReallyWhyNotCheckout> {
         );
       },
     );
+  }
+}
+
+class JustLookCart extends StatefulWidget {
+  final CartItem cartItem;
+  JustLookCart({this.cartItem});
+  @override
+  _JustLookCartState createState() => _JustLookCartState(cartItem: cartItem);
+}
+
+class _JustLookCartState extends State<JustLookCart> {
+  final CartItem cartItem;
+  _JustLookCartState({this.cartItem});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  var userID;
+
+  Future getUserID() async {
+    FirebaseUser user = await _auth.currentUser();
+    String id = user.uid;
+    userID = id;
+  }
+
+  @override
+  void initState() {
+    getUserID();
+    super.initState();
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return Card(
+      child: ListTile(
+        onTap: () {},
+        leading: Container(),
+        title: RentalParticularName(
+          itemID: widget.cartItem.itemUid,
+        ),
+        subtitle: RentalParticularDetail(
+          itemID: widget.cartItem.itemUid,
+        ),
+      ),
+    );
+  }
+}
+
+class ConfirmPayment extends StatefulWidget {
+  final List<CartItem> handoverConfirmedCart;
+  ConfirmPayment({this.handoverConfirmedCart});
+  @override
+  _ConfirmPaymentState createState() =>
+      _ConfirmPaymentState(handoverConfirmedCart: handoverConfirmedCart);
+}
+
+class _ConfirmPaymentState extends State<ConfirmPayment> {
+  final List<CartItem> handoverConfirmedCart;
+  _ConfirmPaymentState({this.handoverConfirmedCart});
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+
+  var userID;
+  Future getUserID() async {
+    FirebaseUser user = await _auth.currentUser();
+    String id = user.uid;
+    userID = id;
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    //TransactionOrders toBeNewTransaction = TransactionOrders();
+    PaymentMethod chooseMethod = PaymentMethod.cash;
+
+    Future attemptCheckoutNow() async {
+      var cartTimeLength = handoverConfirmedCart.length;
+      print("Start NOw pls OMG! How many: ${handoverConfirmedCart.length}");
+      getUserID();
+      for (var i = 0; i < cartTimeLength; i++) {
+        CartItem dataOfIt = handoverConfirmedCart[i];
+        print("Whyn't work ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
+        print("delet ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
+        await DatabaseService(uid: userID).addTransactionOrderListData(
+            dataOfIt.itemUid, dataOfIt.quantity, DateTime.now(),
+            borrowFrom: handoverConfirmedCart[i].borrowFrom,
+            borrowTo: handoverConfirmedCart[i].borrowTo,
+            executeWhen: handoverConfirmedCart[i].executeWhen,
+            timeBorrowDay: handoverConfirmedCart[i].timeBorrowDay,
+            transactionToken: 'aawwwaaa',
+            transactionMethod: '$chooseMethod');
+        await DatabaseService(uid: userID)
+            .deleteCartItemData(itemID: dataOfIt.itemUid);
+      }
+    }
+
+    return Scaffold(
+      appBar: AppBar(
+        actions: [
+          RaisedButton.icon(
+            onPressed: () {},
+            icon: Icon(Icons.credit_card),
+            label: Text('Confirm Payment'),
+          ),
+        ],
+      ),
+      body: Container(
+        child: ListView.builder(
+          itemBuilder: (context, index) {
+            return JustLookCart(
+              cartItem: handoverConfirmedCart.elementAt(index),
+            );
+          },
+        ),
+      ),
+      persistentFooterButtons: [
+        // RaisedButton.icon(
+        //     onPressed: () {
+        //       showModalBottomSheet(
+        //         context: context,
+        //         builder: (context) {
+        //           return ChoosePaymentMethod();
+        //         },
+        //       );
+        //     },
+        //     icon: Icon(Icons.money),
+        //     label: Text('Pilih Metode Pembayaran'),
+        //     ),
+
+        // https://api.flutter.dev/flutter/material/DropdownButton-class.html
+        DropdownButton<String>(
+            items: <String>[
+              'Cash On Delivery',
+              'Kartu Kredit / Debit',
+              'Transfer Bank'
+            ].map<DropdownMenuItem<String>>((String value) {
+              return DropdownMenuItem<String>(
+                value: value,
+                child: Text('$value'),
+              );
+            }).toList(),
+            onChanged: (String newValue) {
+              setState(() {
+                switch (newValue) {
+                  case 'Cash On Delivery':
+                    chooseMethod = PaymentMethod.cash;
+                    break;
+                  case 'Kartu Kredit / Debit':
+                    chooseMethod = PaymentMethod.card;
+                    break;
+                  case 'Transfer Bank':
+                    chooseMethod = PaymentMethod.transfer;
+                    break;
+
+                  default:
+                    chooseMethod = PaymentMethod.violated;
+                    break;
+                }
+              });
+            }),
+      ],
+    );
+  }
+}
+
+//Modal bottom sheet
+class ChoosePaymentMethod extends StatefulWidget {
+  @override
+  _ChoosePaymentMethodState createState() => _ChoosePaymentMethodState();
+}
+
+class _ChoosePaymentMethodState extends State<ChoosePaymentMethod> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
+  }
+}
+
+class DummyGenerateTransactionToken extends StatefulWidget {
+  @override
+  _DummyGenerateTransactionTokenState createState() =>
+      _DummyGenerateTransactionTokenState();
+}
+
+class _DummyGenerateTransactionTokenState
+    extends State<DummyGenerateTransactionToken> {
+  @override
+  Widget build(BuildContext context) {
+    return Container();
   }
 }
 
