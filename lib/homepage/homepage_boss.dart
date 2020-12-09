@@ -63,7 +63,7 @@ class _HomepageBossState extends State<HomepageBoss> {
             label: 'Chat',
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.storage),
+            icon: Icon(Icons.favorite),
             label: 'Wishlist',
           ),
           BottomNavigationBarItem(
