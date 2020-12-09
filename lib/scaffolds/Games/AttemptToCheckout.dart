@@ -1,4 +1,3 @@
-import 'dart:html';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:ourwear_really/homepage/homepage_boss.dart';
 import 'package:ourwear_really/models/Renter.dart';
 import 'package:ourwear_really/models/user.dart';
+import 'package:ourwear_really/scaffolds/Prosotipe/TransactionOrderList.dart';
 import 'package:ourwear_really/services/auth.dart';
 import 'package:ourwear_really/services/database.dart';
 import 'package:ourwear_really/shared/spareparts/CartItemListView.dart';
@@ -330,7 +330,8 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
     Future attemptCheckoutNow() async {
       var cartTimeLength = handoverConfirmedCart.length;
       print("Start NOw pls OMG! How many: ${handoverConfirmedCart.length}");
-      getUserID();
+      await getUserID();
+      print('user $userID');
       for (var i = 0; i < cartTimeLength; i++) {
         CartItem dataOfIt = handoverConfirmedCart[i];
         print("Whyn't work ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
@@ -352,9 +353,20 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
       appBar: AppBar(
         actions: [
           RaisedButton.icon(
-            onPressed: () {
-              attemptCheckoutNow();
-              Navigator.of(context).popUntil(ModalRoute.withName('/home'));
+            onPressed: () async {
+              try {
+                await attemptCheckoutNow();
+                //Navigator.of(context).popUntil(ModalRoute.withName('/home'));
+                //Navigator.of(context).popAndPushNamed(routeName)
+                Navigator.of(context).pop();
+                Navigator.of(context).pop();
+                Navigator.of(context).push(MaterialPageRoute(
+                  builder: (context) => TransactionOrderList(),
+                ));
+                //Navigator.of(context).pop();
+              } catch (e) {
+                print(e);
+              }
             },
             icon: Icon(Icons.credit_card),
             label: Text('Confirm Payment'),

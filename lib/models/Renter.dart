@@ -136,7 +136,7 @@ class TransactionOrders {
   final String uid;
   final String cartUid;
   final String transactionToken; //Proof of transaction
-  final PaymentMethod transactionMethod;
+  final String transactionMethod;
   final int quantity;
   final Timestamp orderedAt;
   final List<Timestamp>
