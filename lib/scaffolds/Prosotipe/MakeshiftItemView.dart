@@ -139,7 +139,9 @@ class _MakeshiftItemViewState extends State<MakeshiftItemView> {
         ),
       ),
       persistentFooterButtons: <Widget>[
+        //TODO flat button for chat seller & add to wishlist
         RaisedButton.icon(
+            // TODO color this Orange
             onPressed: () {
               //Navigator.pop(context);
               reallyAddItToCart(
