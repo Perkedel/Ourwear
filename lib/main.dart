@@ -1,3 +1,4 @@
+///import 'package:flame/game/widget_builder.dart';
 import 'package:flutter/material.dart';
 import 'package:ourwear_really/homepage/homepage_boss.dart';
 
@@ -28,6 +29,9 @@ class MyApp extends StatelessWidget {
         visualDensity: VisualDensity.adaptivePlatformDensity,
       ),
       home: HomepageBoss(),
+      routes: <String, WidgetBuilder>{
+        '/home': (BuildContext context) => new HomepageBoss(),
+      },
     );
   }
 }

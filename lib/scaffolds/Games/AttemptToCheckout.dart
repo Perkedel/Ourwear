@@ -1,9 +1,11 @@
+import 'dart:html';
 import 'dart:math';
 
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:ourwear_really/homepage/homepage_boss.dart';
 import 'package:ourwear_really/models/Renter.dart';
 import 'package:ourwear_really/models/user.dart';
 import 'package:ourwear_really/services/auth.dart';
@@ -203,13 +205,14 @@ class _ReallyWhyNotCheckoutState extends State<ReallyWhyNotCheckout> {
 
         Future handoverCheckout() async {
           var cartTimeLength = cartTime.length;
-          List<CartItem> tobeHandoverCheckout;
-          print("Start NOw pls OMG! How many: ${cartTime.length}");
+          // https://stackoverflow.com/questions/64810935/nosuchmethoderror-nosuchmethoderror-the-method-add-was-called-on-null-recei
+          List<CartItem> tobeHandoverCheckout = new List<CartItem>();
+          print("Start NOw pls OMG handover! How many: ${cartTime.length}");
           getUserID();
           for (var i = 0; i < cartTimeLength; i++) {
             CartItem dataOfIt = cartTime[i];
             print("Whyn't work ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
-            print("delet ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
+            //print("delet ${dataOfIt.itemUid}, ${dataOfIt.itemName}");
             if (dataOfIt.checkoutThis) {
               tobeHandoverCheckout.add(dataOfIt);
             }
@@ -281,15 +284,18 @@ class _JustLookCartState extends State<JustLookCart> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: ListTile(
-        onTap: () {},
-        leading: Container(),
-        title: RentalParticularName(
-          itemID: widget.cartItem.itemUid,
-        ),
-        subtitle: RentalParticularDetail(
-          itemID: widget.cartItem.itemUid,
+    return Padding(
+      padding: const EdgeInsets.only(top: 8.0),
+      child: Card(
+        child: ListTile(
+          onTap: () {},
+          leading: Container(),
+          title: RentalParticularName(
+            itemID: widget.cartItem.itemUid,
+          ),
+          subtitle: RentalParticularDetail(
+            itemID: widget.cartItem.itemUid,
+          ),
         ),
       ),
     );
@@ -346,18 +352,30 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
       appBar: AppBar(
         actions: [
           RaisedButton.icon(
-            onPressed: () {},
+            onPressed: () {
+              attemptCheckoutNow();
+              Navigator.of(context).popUntil(ModalRoute.withName('/home'));
+            },
             icon: Icon(Icons.credit_card),
             label: Text('Confirm Payment'),
           ),
         ],
       ),
       body: Container(
+        // child: ListView.builder(
+        //   shrinkWrap: true,
+        //   itemCount: handoverConfirmedCart.length,
+        //   itemBuilder: (context, index) {
+        //     return JustLookCart(
+        //       cartItem: handoverConfirmedCart.elementAt(index),
+        //     );
+        //   },
+        // ),
         child: ListView.builder(
+          shrinkWrap: true,
+          itemCount: handoverConfirmedCart.length,
           itemBuilder: (context, index) {
-            return JustLookCart(
-              cartItem: handoverConfirmedCart.elementAt(index),
-            );
+            return (Text('${handoverConfirmedCart.elementAt(index).itemName}'));
           },
         ),
       ),
@@ -376,34 +394,40 @@ class _ConfirmPaymentState extends State<ConfirmPayment> {
         //     ),
 
         // https://api.flutter.dev/flutter/material/DropdownButton-class.html
-        DropdownButton<String>(
-            items: <String>[
-              'Cash On Delivery',
-              'Kartu Kredit / Debit',
-              'Transfer Bank'
-            ].map<DropdownMenuItem<String>>((String value) {
-              return DropdownMenuItem<String>(
+        DropdownButton<PaymentMethod>(
+            value: chooseMethod,
+            items: <PaymentMethod>[
+              PaymentMethod.cash,
+              PaymentMethod.card,
+              PaymentMethod.transfer,
+            ].map<DropdownMenuItem<PaymentMethod>>((PaymentMethod value) {
+              return DropdownMenuItem<PaymentMethod>(
                 value: value,
                 child: Text('$value'),
               );
             }).toList(),
-            onChanged: (String newValue) {
-              setState(() {
-                switch (newValue) {
-                  case 'Cash On Delivery':
-                    chooseMethod = PaymentMethod.cash;
-                    break;
-                  case 'Kartu Kredit / Debit':
-                    chooseMethod = PaymentMethod.card;
-                    break;
-                  case 'Transfer Bank':
-                    chooseMethod = PaymentMethod.transfer;
-                    break;
+            onChanged: (PaymentMethod newValue) {
+              chooseMethod = newValue;
 
-                  default:
-                    chooseMethod = PaymentMethod.violated;
-                    break;
-                }
+              setState(() {
+                chooseMethod = newValue;
+
+                // switch (newValue) {
+                //   case 'Cash On Delivery':
+                //     chooseMethod = PaymentMethod.cash;
+                //     break;
+                //   case 'Kartu Kredit / Debit':
+                //     chooseMethod = PaymentMethod.card;
+                //     break;
+                //   case 'Transfer Bank':
+                //     chooseMethod = PaymentMethod.transfer;
+                //     break;
+
+                //   default:
+                //     chooseMethod = PaymentMethod.violated;
+                //     break;
+                //}
+                print('chose $newValue, now $chooseMethod');
               });
             }),
       ],
