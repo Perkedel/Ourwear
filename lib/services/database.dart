@@ -20,8 +20,8 @@ class DatabaseService {
       Firestore.instance.collection('wearers');
   final CollectionReference rentalCollection =
       Firestore.instance.collection('rentals');
-  final CollectionReference draftCollection =
-      Firestore.instance.collection('wearers/drafts');
+  //final CollectionReference draftCollection =
+  //Firestore.instance.collection('wearers/drafts');
   final CollectionReference khochocCollection =
       Firestore.instance.collection('KhochocHighScore');
   final CollectionReference topListCollection =
@@ -99,7 +99,11 @@ class DatabaseService {
       String imager,
       bool isAvailable,
       int tradeType}) async {
-    return await draftCollection.document(itemId).setData({
+    return await wearerCollection
+        .document(uid)
+        .collection('drafts')
+        .document(itemId)
+        .setData({
       'imager': imager,
       'nama': name,
       'userId': userId,
@@ -121,7 +125,7 @@ class DatabaseService {
       String imager,
       bool isAvailable,
       int tradeType}) async {
-    return await draftCollection.add({
+    return await wearerCollection.document(uid).collection('drafts').add({
       'imager': imager,
       'nama': name,
       'userId': userId,
