@@ -54,6 +54,7 @@ class Draft {
   final int timeBorrowDay;
   final bool isAvailable;
   final int tradeType;
+  final bool visibility;
   //TODO: available status Y/N, Color Type
 
   Draft({
@@ -67,6 +68,7 @@ class Draft {
     this.timeBorrowDay,
     this.isAvailable,
     this.tradeType,
+    this.visibility,
   });
 }
 

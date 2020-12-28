@@ -1,4 +1,4 @@
-package com.example.ourwear_really
+package com.Perkedel.Ourwear
 
 import io.flutter.embedding.android.FlutterActivity
 
