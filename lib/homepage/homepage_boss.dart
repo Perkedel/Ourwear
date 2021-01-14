@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:ourwear_really/scaffolds/Account/AccountScreen.dart';
 import 'package:ourwear_really/scaffolds/Account/Wrapper.dart';
 import 'package:ourwear_really/scaffolds/Games/CartScreen.dart';
+import 'package:ourwear_really/scaffolds/Games/game-selector-hub.dart';
 
 import 'homepage_general.dart';
 // https://flutter.dev/docs/cookbook/design/tabs
@@ -52,6 +53,16 @@ class _HomepageBossState extends State<HomepageBoss> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: _homepageOptions.elementAt(_selectedHomepage),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                builder: (context) => GameHubScaffold(),
+              ));
+        },
+        child: Icon(Icons.games),
+      ),
       bottomNavigationBar: BottomNavigationBar(
         items: [
           BottomNavigationBarItem(
